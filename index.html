@@ -1,0 +1,220 @@
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+  
+  <meta name="language" content="en-EN" />
+  <meta name="author" content="David Ta" />
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+   crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://mazipan.github.io/favicon/favicon-16x16.png"> -->
+
+ 
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script type="text/htmlpreview" src="https://d3js.org/d3.v4.js"></script>
+  
+</head>
+
+<body>
+
+  <header class="navbar navbar-expand sticky-top bg-primary navbar-dark flex-column flex-md-row bd-navbar">
+    <a class="navbar-brand mr-0 mr-md-2" href="#">
+      <img class="navbar-brand--img img-thumbnail" src="./davidTa.png" alt="David Ta" style="width:60px;height:60px;"
+        title="David Ta"> 
+    </a>
+
+    <div class="navbar-nav-scroll">
+      <ul class="navbar-nav bd-navbar-nav flex-row">
+        <li class="nav-item px-2">
+          <a class="nav-link " href="./practical4.html">Relationship gdp and age</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link active" href="#">Population distribution</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link" href="./practical4-3.html">Population Map</a>
+        </li>
+      </ul>
+    </div>
+
+ 
+
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+
+        </div>
+      </aside>
+      <main class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2"><i class="fa fa-tachometer"></i> Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+              <button class="btn btn-sm btn-primary">Share</button>
+              <button class="btn btn-sm btn-primary">Export</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-10 col-sm-12 pr-0 mb-12">
+            <div class="card text-dark">
+              <div class="card-header"><i class="fa fa-bar-chart"></i> Histogram of population </div>
+              <div class="card-body">
+                <div id="histogram"></div>
+                <p>
+                  <label># bins</label>
+                  <input type="number" min="1" max="100" step="5" value="10" id="nBin">
+                </p>
+                
+              </div>
+            </div>
+             <div>
+              <p class="card-footer text-left" href="#" >
+                <strong>  Comment </strong>: The highest frequency of GDP per capita is below 5000, and this distribution is left-skewed.  
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+      </main>
+    </div>
+
+    <footer class='w3-container w3-padding-16 w3-light-grey'>
+      <p> This data set is avilable in <a href="https://github.com/tatien777/dataPlotD3">my git hub </a> </p>
+      </footer>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chart.js"></script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5442972248172818" data-ad-slot="1487770485" data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  <script>
+
+      // set the dimensions and margins of the graph
+      var margin = {top: 10, right: 30, bottom: 30, left: 40},
+          width = 1000 - margin.left - margin.right,
+          height = 300 - margin.top - margin.bottom;
+      
+      // append the svg object to the body of the page
+      var svg = d3.select("#histogram")
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+      
+      // get the data
+      d3.csv("https://raw.githubusercontent.com/tatien777/dataPlotD3/main/pop2017", function(data) {
+      
+        // X axis: scale and draw:
+        var x = d3.scaleLinear()
+            .domain([0, 50000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
+            .range([0, width]);
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+      
+        // Y axis: initialization
+        var y = d3.scaleLinear()
+            .range([height, 0]);
+        var yAxis = svg.append("g")
+      
+        // A function that builds the graph for a specific value of bin
+        function update(nBin) {
+      
+          // set the parameters for the histogram
+          var histogram = d3.histogram()
+              .value(function(d) { return d.gdpPercap; })   // I need to give the vector of value
+              .domain(x.domain())  // then the domain of the graphic
+              .thresholds(x.ticks(nBin)); // then the numbers of bins
+      
+          // And apply this function to data to get the bins
+          var bins = histogram(data);
+      
+          // Y axis: update now that we know the domain
+          y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+          yAxis
+              .transition()
+              .duration(1000)
+              .call(d3.axisLeft(y));
+      
+          // Join the rect with the bins data
+          var u = svg.selectAll("rect")
+              .data(bins)
+      
+          // Manage the existing bars and eventually the new ones:
+          u
+              .enter()
+              .append("rect") // Add a new rect for each new elements
+              .merge(u) // get the already existing elements as well
+              .transition() // and apply changes to all of them
+              .duration(1000)
+                .attr("x", 1)
+                .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+                .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
+                .attr("height", function(d) { return height - y(d.length); })
+                .style("fill", "#69b3a2")
+      
+      
+          // If less bar in the new histogram, I delete the ones not in use anymore
+          u
+              .exit()
+              .remove()
+      
+          }
+      
+      
+        // Initialize with 20 bins
+        update(20)
+      
+      
+        // Listen to the button -> update if user change it
+        d3.select("#nBin").on("input", function() {
+          update(+this.value);
+        });
+      
+      });
+  </script>
+
+
+
+  
+ 
+  
+</body>
+
+</html>
+
